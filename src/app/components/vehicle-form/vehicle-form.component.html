@@ -1,0 +1,53 @@
+<div class="container">
+    <form [formGroup]="vehicleForm" #form="ngForm" style="width: 50%;">
+        <h1 style="text-align: center;">Vehicle Form</h1>
+        <div class="form-group">
+            <input type="text" id="vin" name="vin" formControlName="vin" placeholder="VIN" required minlength="17"
+                class="form-control form-control-sm" [class.is-invalid]="vin.invalid && (vin.dirty || vin.touched)">
+            <div *ngIf="vin.invalid && (vin.dirty || vin.touched)" class="invalid-feedback">
+                <div *ngIf="vin.errors?.['required']">
+                    This field is required.
+                </div>
+                <div *ngIf="vin.errors?.['minlength']">
+                    This field must have at least 17 character.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" id="model" name="model" formControlName="model" placeholder="Vehicle Model"
+                maxlength="10" class="form-control form-control-sm" required
+                [class.is-invalid]="model.invalid && (model.dirty || model.touched)">
+            <div *ngIf="model.invalid && (model.dirty || model.touched)" class="invalid-feedback">
+                <div *ngIf="model.errors?.['required']">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="number" id="year" name="year" formControlName="year" placeholder="Vehicle Year" required
+                minlength="4" class="form-control form-control-sm"
+                [class.is-invalid]="year.invalid && (year.dirty || year.touched)">
+
+            <div *ngIf="year.invalid && (year.dirty || year.touched)" class="invalid-feedback">
+                <div *ngIf="year.errors?.['required']">
+                    This field is required.
+                </div>
+                <div *ngIf="year.errors?.['minlength']">
+                    This field must have at least 4 character.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" id="make" name="make" formControlName="make" placeholder="Vehicle Make" maxlength="10"
+                class="form-control form-control-sm" required
+                [class.is-invalid]="make.invalid && (make.dirty || make.touched)">
+
+            <div *ngIf="make.invalid && (make.dirty || make.touched)" class="invalid-feedback">
+                <div *ngIf="make.errors?.['required']">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-primary" (click)="saveVehicle()">Submit</button>
+    </form>
+</div>
